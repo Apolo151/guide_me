@@ -4,7 +4,7 @@
 DataManager::DataManager() {}
 
 void DataManager::readData() {
-  fileStream.open("../data.txt");
+  fileStream.open("../../../data/data.txt", ios::in | ios::out);
   if (fileStream.is_open()) {
     while (getline(fileStream, currLine)) {
       // Cut line

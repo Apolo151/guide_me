@@ -1,4 +1,3 @@
 .vscode
-build/*
-!*.o
-!*.exe
+.vs
+out/build/Debug/*
