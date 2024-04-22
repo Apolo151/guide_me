@@ -2,6 +2,15 @@
 
 A CLI application that provides users with all the available transportation options, according to their needs.
 
+## Technical Practices
+
+-   Components will be separated in to header (.h) files and source (.cpp) files
+-   Apply OOP principles
+-   C++11 following Google's C++ style sheet
+-   File names & branch names -> snake case
+-   Class names -> Pascal Case
+-   Methods & Attributes & Functions -> Camel Case
+
 ## Local Setup
 
 ### Configure C++ and Cmake
@@ -13,14 +22,4 @@ A CLI application that provides users with all the available transportation opti
 
 -   build using cmake
 
-```bash
-cd build
-cmake ..
-make
-```
-
--   run the program
-
-```bash
-./main.o # or main.exe if on windows
-```
+-   run the application

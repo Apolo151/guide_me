@@ -15,12 +15,6 @@
 -   Qt widgets will be used for creating the GUI
 -   CMake will be used for building the project
 
-## Practices
-
--   Components will be separated in to header (.h) files and source (.cpp) files
--   Apply OOP principles
--   C++11 following Google's C++ style sheet
-
 ## Testing
 
 -   Unit Testing -> (TBD)
