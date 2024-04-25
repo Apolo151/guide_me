@@ -1,3 +1,5 @@
+#pragma once
+
 #include <map>
 #include <string>
 #include <vector>
@@ -8,30 +10,42 @@ using namespace std;
 
 enum transportations { BUS, MICROBUS, TRAIN, METRO, UBER };
 
-class Map {
-  map<string, vector<Road>> adjList;
-
+class City : Node {
  public:
-  void dfs() {}
-  void bfs() {}
-};
-
-class Route {
-  vector<Road> routes;
+  City();
+  City(string);
+  City(const City&);
+  string getName() const;
+  void setName(string);
 };
 
 class Road : Edge {
-  City city1, city2;
+ public:
+  string city1Name, city2Name;
   int cost;
   transportations transportation;
-
- public:
-  Road(City, City, transportations, int){};
+  Road();
+  Road(string, string, transportations, int);
+  Road(const Road&);
 };
 
-class City : Node {
+class Map {
+  Map();
+  static Map* instancePtr;
+
  public:
-  City(){};
-  City(string){};
-  City(City&){};
+  static map<string, vector<Road>> adjList;
+
+  static Map* getInstance() {
+    if (instancePtr == NULL) {
+      instancePtr = new Map();
+      return instancePtr;
+    }
+
+    else {
+      return instancePtr;
+    }
+  }
+  void dfs();
+  void bfs();
 };
