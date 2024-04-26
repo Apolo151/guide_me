@@ -7,9 +7,9 @@ A CLI application that provides users with all the available transportation opti
 -   Components will be separated in to header (.h) files and source (.cpp) files
 -   Apply OOP principles
 -   C++11 following Google's C++ style sheet
--   File names & branch names -> snake case
--   Class names -> Pascal Case
--   Methods & Attributes & Functions -> Camel Case
+-   File names & branch names -> snake_case
+-   Class names -> PascalCase
+-   Methods & Attributes & Functions -> camelCase
 
 ## Local Setup
 
