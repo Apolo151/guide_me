@@ -4,8 +4,6 @@
 
 #include "../include/map.h"
 
-string FILE_PATH = "../data/data.txt";
-
 map<string, transportations> strToEnum = {{"Bus", BUS},
                                           {"Microbus", MICROBUS},
                                           {"Train", TRAIN},
@@ -14,11 +12,11 @@ map<string, transportations> strToEnum = {{"Bus", BUS},
 
 DataManager::DataManager() {}
 
-void DataManager::readData() {
+void DataManager::readData(string filePath) {
   string trans;
   int cost;
   string word;
-  fileStream.open(FILE_PATH, ios::in);
+  fileStream.open(filePath, ios::in);
   if (fileStream.is_open()) {
     getline(fileStream, currLine);
     linesNo = stoi(currLine);
@@ -51,14 +49,15 @@ void DataManager::readData() {
   fileStream.close();
 }
 
-void DataManager::saveData() {
-  fileStream.open("../data/out.txt", ios::in | ios::out);
+void DataManager::saveData(string filePath) {
+  fileStream.open(filePath, ios::out);
   if (fileStream.is_open()) {
-    for (auto entry : Map::adjList) {
-      for (auto road : entry.second) {
-        fileStream << road.city1Name << " - " << road.city2Name << ' '
-                   << road.props.transport << ' ' << road.props.cost << '\n';
+    for (auto route : Map::routes) {
+      fileStream << route.city1 << " - " << route.city2 << ' ';
+      for (auto road : route.roads) {
+        fileStream << road.transport << ' ' << road.cost << ' ';
       }
+      fileStream << '\n';
     }
   } else {
     cerr << "Error opening file to save data\n";
