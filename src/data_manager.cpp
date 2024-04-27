@@ -36,7 +36,7 @@ void DataManager::readData(string filePath) {
       // get cities & add to cities
       string c1 = wordsList[0];
       string c2 = wordsList[2];
-      cityPairs.insert(set({c1, c2}));
+      cityPairs.insert(set<string>({c1, c2}));
       Route route(c1, c2);
       // loop through roads and add to adjList
       for (int i = 3; i < wordsList.size(); i += 2) {
@@ -66,7 +66,7 @@ void DataManager::saveData(string filePath) {
     fileStream << Map::routes.size();
     for (auto route : Map::routes) {
       fileStream << '\n' << route.city1 << " - " << route.city2;
-      cityPairs.erase(cityPairs.find(set({route.city1, route.city2})));
+      cityPairs.erase(cityPairs.find(set<string>({route.city1, route.city2})));
       for (auto road : route.roads) {
         fileStream << ' ' << enumToStr[road.transport] << ' ' << road.cost;
       }
