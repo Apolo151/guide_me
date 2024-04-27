@@ -17,12 +17,21 @@ City::City(const City& city) { name = city.name; }
 string City::getName() const { return name; }
 void City::setName(string cityName) { name = cityName; }
 
-Road::Road(string cName1, string cName2, transportations trans, int cost)
-    : city1Name(cName1), city2Name(cName2), transportation(trans), cost(cost) {}
+RoadProps::RoadProps(int cost, transportations transportation) {
+  cost = cost;
+  transport = transportation;
+}
+
+RoadProps::RoadProps(const RoadProps& anotherRoadProps) {
+  cost = anotherRoadProps.cost;
+  transport = anotherRoadProps.transport;
+}
+
+Road::Road(string cName1, string cName2, RoadProps props)
+    : city1Name(cName1), city2Name(cName2), props(props) {}
 
 Road::Road(const Road& road) {
   city1Name = road.city1Name;
   city2Name = road.city2Name;
-  transportation = road.transportation;
-  cost = road.cost;
+  props = road.props;
 }

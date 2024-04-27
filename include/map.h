@@ -1,5 +1,6 @@
 #pragma once
 
+#include <list>
 #include <map>
 #include <string>
 #include <vector>
@@ -19,14 +20,34 @@ class City : Node {
   void setName(string);
 };
 
+class RoadProps {
+ public:
+  int cost;
+  transportations transport;
+  //
+  RoadProps();
+  RoadProps(int, transportations);
+  RoadProps(const RoadProps&);
+};
+
 class Road : Edge {
  public:
   string city1Name, city2Name;
-  int cost;
-  transportations transportation;
+  RoadProps props;
   Road();
-  Road(string, string, transportations, int);
+  Road(string, string, RoadProps);
   Road(const Road&);
+};
+
+/* contains list of all roads between city1 and city 2 */
+class Route {
+ public:
+  string city1;
+  string city2;
+  list<RoadProps> roads;
+  //
+  Route();
+  void addRoad(RoadProps);
 };
 
 class Map {
@@ -35,6 +56,7 @@ class Map {
 
  public:
   static map<string, vector<Road>> adjList;
+  static list<Route> routes;
 
   static Map* getInstance() {
     if (instancePtr == NULL) {
