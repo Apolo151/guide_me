@@ -5,10 +5,12 @@
 
 map<string, vector<Road>> Map::adjList;
 
+string DATA_PATH = "../data/data.txt";
+
 int main(int argc, char **argv) {
   DataManager dataManager = DataManager();
-  dataManager.readData();
+  dataManager.readData(DATA_PATH);
   dataManager.printAdjList();
-  dataManager.saveData();
+  dataManager.saveData("../data/out.txt");
   return 0;
 }
