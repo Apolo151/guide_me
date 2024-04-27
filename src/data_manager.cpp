@@ -36,8 +36,10 @@ void DataManager::readData() {
       for (int i = 3; i < wordsList.size(); i += 2) {
         trans = wordsList[i];
         cost = stoi(wordsList[i + 1]);
-        Map::adjList[c1].push_back(Road(c1, c2, strToEnum[trans], cost));
-        Map::adjList[c2].push_back(Road(c2, c1, strToEnum[trans], cost));
+        Map::adjList[c1].push_back(
+            Road(c1, c2, RoadProps(cost, strToEnum[trans])));
+        Map::adjList[c2].push_back(
+            Road(c2, c1, RoadProps(cost, strToEnum[trans])));
       }
       // clear data
       wordsList.clear();
@@ -55,7 +57,7 @@ void DataManager::saveData() {
     for (auto entry : Map::adjList) {
       for (auto road : entry.second) {
         fileStream << road.city1Name << " - " << road.city2Name << ' '
-                   << road.transportation << ' ' << road.cost << '\n';
+                   << road.props.transport << ' ' << road.props.cost << '\n';
       }
     }
   } else {
@@ -68,8 +70,8 @@ void DataManager::printAdjList() {
   for (auto pr : Map::adjList) {
     cout << "City: " << pr.first << endl;
     for (auto road : pr.second) {
-      cout << road.city2Name << ", with " << road.transportation
-           << " and costs " << road.cost << endl;
+      cout << road.city1Name << " - " << road.city2Name << " with "
+           << road.props.transport << ", costs " << road.props.cost << endl;
     }
   }
 }

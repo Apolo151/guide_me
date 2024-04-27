@@ -25,7 +25,6 @@ class RoadProps {
   int cost;
   transportations transport;
   //
-  RoadProps();
   RoadProps(int, transportations);
   RoadProps(const RoadProps&);
 };
@@ -46,7 +45,7 @@ class Route {
   string city2;
   list<RoadProps> roads;
   //
-  Route();
+  Route(string, string);
   void addRoad(RoadProps);
 };
 
