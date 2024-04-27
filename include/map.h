@@ -46,6 +46,8 @@ class Route {
   list<RoadProps> roads;
   //
   Route(string, string);
+  Route(const Route&);
+  //
   void addRoad(RoadProps);
 };
 

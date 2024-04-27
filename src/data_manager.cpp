@@ -10,6 +10,12 @@ map<string, transportations> strToEnum = {{"Bus", BUS},
                                           {"Metro", METRO},
                                           {"Uber", UBER}};
 
+map<transportations, string> enumToStr = {{BUS, "Bus"},
+                                          {MICROBUS, "Microbus"},
+                                          {TRAIN, "Train"},
+                                          {METRO, "Metro"},
+                                          {UBER, "Uber"}};
+
 DataManager::DataManager() {}
 
 void DataManager::readData(string filePath) {
@@ -27,18 +33,23 @@ void DataManager::readData(string filePath) {
       while (getline(stringStream, word, ' ')) {
         wordsList.push_back(word);
       }
-      // get cities
+      // get cities & add to cities
       string c1 = wordsList[0];
       string c2 = wordsList[2];
+      cityPairs.insert(set({c1, c2}));
+      Route route(c1, c2);
       // loop through roads and add to adjList
       for (int i = 3; i < wordsList.size(); i += 2) {
         trans = wordsList[i];
         cost = stoi(wordsList[i + 1]);
-        Map::adjList[c1].push_back(
-            Road(c1, c2, RoadProps(cost, strToEnum[trans])));
-        Map::adjList[c2].push_back(
-            Road(c2, c1, RoadProps(cost, strToEnum[trans])));
+        RoadProps roadProps(cost, strToEnum[trans]);
+        route.addRoad(roadProps);
+        //
+        Map::adjList[c1].push_back(Road(c1, c2, roadProps));
+        Map::adjList[c2].push_back(Road(c2, c1, roadProps));
       }
+      // add route
+      Map::routes.push_back(route);
       // clear data
       wordsList.clear();
       stringStream.clear();
@@ -52,12 +63,13 @@ void DataManager::readData(string filePath) {
 void DataManager::saveData(string filePath) {
   fileStream.open(filePath, ios::out);
   if (fileStream.is_open()) {
+    fileStream << Map::routes.size();
     for (auto route : Map::routes) {
-      fileStream << route.city1 << " - " << route.city2 << ' ';
+      fileStream << '\n' << route.city1 << " - " << route.city2;
+      cityPairs.erase(cityPairs.find(set({route.city1, route.city2})));
       for (auto road : route.roads) {
-        fileStream << road.transport << ' ' << road.cost << ' ';
+        fileStream << ' ' << enumToStr[road.transport] << ' ' << road.cost;
       }
-      fileStream << '\n';
     }
   } else {
     cerr << "Error opening file to save data\n";
@@ -70,7 +82,8 @@ void DataManager::printAdjList() {
     cout << "City: " << pr.first << endl;
     for (auto road : pr.second) {
       cout << road.city1Name << " - " << road.city2Name << " with "
-           << road.props.transport << ", costs " << road.props.cost << endl;
+           << enumToStr[road.props.transport] << ", costs " << road.props.cost
+           << endl;
     }
   }
 }
