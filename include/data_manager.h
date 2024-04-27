@@ -2,6 +2,7 @@
 
 #include <fstream>
 #include <map>
+#include <set>
 #include <sstream>
 #include <string>
 #include <vector>
@@ -14,10 +15,11 @@ class DataManager {
   stringstream stringStream;
   string currLine;
   vector<string> wordsList;
+  set<set<string>> cityPairs;
   int linesNo;
   //
   DataManager();
-  void readData();
-  void saveData();
+  void readData(string);
+  void saveData(string);
   void printAdjList();
 };

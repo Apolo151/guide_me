@@ -2,3 +2,4 @@
 .vs
 out
 build
+data/out.txt
