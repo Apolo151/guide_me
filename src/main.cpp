@@ -9,5 +9,6 @@ int main(int argc, char **argv) {
   DataManager dataManager = DataManager();
   dataManager.readData();
   dataManager.printAdjList();
+  dataManager.saveData();
   return 0;
 }

@@ -18,7 +18,7 @@ void DataManager::readData() {
   string trans;
   int cost;
   string word;
-  fileStream.open(FILE_PATH, ios::in | ios::out);
+  fileStream.open(FILE_PATH, ios::in);
   if (fileStream.is_open()) {
     getline(fileStream, currLine);
     linesNo = stoi(currLine);
@@ -43,11 +43,26 @@ void DataManager::readData() {
       wordsList.clear();
       stringStream.clear();
     }
+  } else {
+    cerr << "Error opening file to read data\n";
   }
   fileStream.close();
 }
 
-void DataManager::saveData() {}
+void DataManager::saveData() {
+  fileStream.open("../data/out.txt", ios::in | ios::out);
+  if (fileStream.is_open()) {
+    for (auto entry : Map::adjList) {
+      for (auto road : entry.second) {
+        fileStream << road.city1Name << " - " << road.city2Name << ' '
+                   << road.transportation << ' ' << road.cost << '\n';
+      }
+    }
+  } else {
+    cerr << "Error opening file to save data\n";
+  }
+  fileStream.close();
+}
 
 void DataManager::printAdjList() {
   for (auto pr : Map::adjList) {
