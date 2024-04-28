@@ -10,11 +10,12 @@ string DATA_PATH = "../data/data.txt";
 map<string, vector<Road>> Map::adjList;
 list<Route> Map::routes;
 
-int main(int argc, char **argv) {
-  // setup entities
+int main(int argc, char **argv) 
+{
+  //setup entities
   DataManager dataManager = DataManager();
+  
   dataManager.readData(DATA_PATH);
-  //
   dataManager.printAdjList();
 
   // shutdown
