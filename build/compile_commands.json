@@ -1,0 +1,32 @@
+[
+{
+  "directory": "D:/University/2nd Year/DS/Project/guide_me/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe   -g -o CMakeFiles\\main.dir\\src\\account.cpp.obj -c \"D:\\University\\2nd Year\\DS\\Project\\guide_me\\src\\account.cpp\"",
+  "file": "D:/University/2nd Year/DS/Project/guide_me/src/account.cpp",
+  "output": "CMakeFiles/main.dir/src/account.cpp.obj"
+},
+{
+  "directory": "D:/University/2nd Year/DS/Project/guide_me/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe   -g -o CMakeFiles\\main.dir\\src\\all_paths.cpp.obj -c \"D:\\University\\2nd Year\\DS\\Project\\guide_me\\src\\all_paths.cpp\"",
+  "file": "D:/University/2nd Year/DS/Project/guide_me/src/all_paths.cpp",
+  "output": "CMakeFiles/main.dir/src/all_paths.cpp.obj"
+},
+{
+  "directory": "D:/University/2nd Year/DS/Project/guide_me/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe   -g -o CMakeFiles\\main.dir\\src\\data_manager.cpp.obj -c \"D:\\University\\2nd Year\\DS\\Project\\guide_me\\src\\data_manager.cpp\"",
+  "file": "D:/University/2nd Year/DS/Project/guide_me/src/data_manager.cpp",
+  "output": "CMakeFiles/main.dir/src/data_manager.cpp.obj"
+},
+{
+  "directory": "D:/University/2nd Year/DS/Project/guide_me/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe   -g -o CMakeFiles\\main.dir\\src\\main.cpp.obj -c \"D:\\University\\2nd Year\\DS\\Project\\guide_me\\src\\main.cpp\"",
+  "file": "D:/University/2nd Year/DS/Project/guide_me/src/main.cpp",
+  "output": "CMakeFiles/main.dir/src/main.cpp.obj"
+},
+{
+  "directory": "D:/University/2nd Year/DS/Project/guide_me/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe   -g -o CMakeFiles\\main.dir\\src\\map.cpp.obj -c \"D:\\University\\2nd Year\\DS\\Project\\guide_me\\src\\map.cpp\"",
+  "file": "D:/University/2nd Year/DS/Project/guide_me/src/map.cpp",
+  "output": "CMakeFiles/main.dir/src/map.cpp.obj"
+}
+]
