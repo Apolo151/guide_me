@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include "../include/map.h"
+#include "../include/map_helpers.h"
 
 map<string, transportations> strToEnum = {{"Bus", BUS},
                                           {"Microbus", MICROBUS},
@@ -42,11 +43,11 @@ void DataManager::readData(string filePath) {
       for (int i = 3; i < wordsList.size(); i += 2) {
         trans = wordsList[i];
         cost = stoi(wordsList[i + 1]);
-        RoadProps roadProps(cost, strToEnum[trans]);
-        route.addRoad(roadProps);
+        RoadProperties roadProperties(cost, strToEnum[trans]);
+        route.addRoad(roadProperties);
         //
-        Map::adjList[c1].push_back(Road(c1, c2, roadProps));
-        Map::adjList[c2].push_back(Road(c2, c1, roadProps));
+        Map::adjList[c1].push_back(Road(c1, c2, roadProperties));
+        Map::adjList[c2].push_back(Road(c2, c1, roadProperties));
       }
       // add route
       Map::routes.push_back(route);
