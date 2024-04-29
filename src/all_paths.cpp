@@ -14,9 +14,13 @@ AllPaths::Path::Path(int weight, vector <int> curPath)
 }
 void AllPaths::computeAllPaths()
 {
-    dfsAllPaths(this->source, {}, 0);
+    dfsAllPaths(this->source, {this->source}, 0);
+    sort(this->allPathsVector.begin(), this->allPathsVector.end());
 }
-
+bool AllPaths::Path::operator<(const Path& other) const 
+{
+        return this->cost < other.cost;
+}
 void AllPaths::displayAllPaths()
 {
     for(int i = 0; i < allPathsVector.size(); i++)

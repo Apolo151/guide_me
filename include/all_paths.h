@@ -11,7 +11,9 @@ class AllPaths
                 int cost;
                 vector <int> pathVector;
                 Path(int cost, vector <int> pathVector);
+                bool operator<(const Path& other) const;
         };
+
         int source, destination;
         vector <vector <pair <int, int>>> graph;
         vector <Path> allPathsVector;
@@ -19,5 +21,5 @@ class AllPaths
         void displayAllPaths();
         void computeAllPaths();
         void dfsAllPaths(int, vector <int>, int);
-        
+        bool comparePaths(Path&, Path&);
 };
