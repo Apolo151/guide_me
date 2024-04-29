@@ -1,8 +1,23 @@
 #pragma once
-
-class all_paths
+#include <vector>
+using namespace std;
+class AllPaths
 {
+    
     public:
-        void view_all_paths();
-        void compute_all_paths();
+        class Path
+        {
+            public:
+                int cost;
+                vector <int> pathVector;
+                Path(int cost, vector <int> pathVector);
+        };
+        int source, destination;
+        vector <vector <pair <int, int>>> graph;
+        vector <Path> allPathsVector;
+        AllPaths(vector <vector <pair <int, int>>> graph, int, int);
+        void displayAllPaths();
+        void computeAllPaths();
+        void dfsAllPaths(int, vector <int>, int);
+        
 };

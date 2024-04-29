@@ -162,4 +162,5 @@ CMakeFiles/main.dir/src/main.cpp.obj: \
  C:/msys64/ucrt64/include/c++/13.2.0/bits/stl_list.h \
  C:/msys64/ucrt64/include/c++/13.2.0/bits/allocated_ptr.h \
  C:/msys64/ucrt64/include/c++/13.2.0/bits/list.tcc \
- D:/University/2nd\ Year/DS/Project/guide_me/include/graph.h
+ D:/University/2nd\ Year/DS/Project/guide_me/include/graph.h \
+ D:/University/2nd\ Year/DS/Project/guide_me/include/all_paths.h
