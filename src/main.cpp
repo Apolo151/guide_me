@@ -7,8 +7,8 @@
 string DATA_PATH = "../data/data.txt";
 
 // initialize static Map members
-map<string, vector<Road>> Map::adjList;
-list<Route> Map::routes;
+unordered_map<string, unordered_map<string, Route>> Map::adjList;
+// list<Route> Map::routes;
 
 int main(int argc, char **argv) {
   // setup entities

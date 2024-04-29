@@ -36,3 +36,4 @@ Route::Route(const Route& route)
 void Route::addRoad(RoadProperties roadProperties) {
   roads.push_back(roadProperties);
 }
+Route::Route(){}

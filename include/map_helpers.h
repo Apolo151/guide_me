@@ -45,6 +45,7 @@ class Route {
   string city2;
   list<RoadProperties> roads;
   //
+  Route();
   Route(string, string);
   Route(const Route&);
   //
