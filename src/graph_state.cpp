@@ -1,7 +1,7 @@
 #include <iostream>
 
-#include "..\include\map.h"
-#include "..\include\graph_state.h"
+#include "../include/map.h"
+#include "../include/graph_state.h"
 
 
 bool GraphState::isComplete() {
