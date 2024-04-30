@@ -4,13 +4,18 @@
 
 using namespace std;
 
-class Account {
+static class Account {
  private:
   string userName;
   string password;
 
+  bool validatePassword(string);
+
  public:
+  Account();
   Account(string, string);  // signup
+  bool greetUser();
+  bool signup();
   bool login();
   string getName();
   string getPassword();
@@ -24,7 +29,7 @@ class User : Account {
   void checkState();
 };
 
-class Admin : Account {
+static class Admin : Account {
  public:
   void addRoad();
   void updateRoad();
