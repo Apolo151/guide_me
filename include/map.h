@@ -7,12 +7,12 @@
 using namespace std;
 
 class Map {
- private:
   Map();
-
+ private:
+ static int compute_hash(string s);   
  public:
   static unordered_map<string, unordered_map<string, Route>> adjList;
-  static void dfs();
+  static long long Dijkstra(string start,string destination);
   static void bfs(string start,string destination);
   static int getNumberOfEdges();
 };
