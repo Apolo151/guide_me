@@ -5,7 +5,6 @@
 
 using namespace std;
 
-Map* Map::instancePtr = NULL;
 // Map
 void Map::bfs() {}
 
