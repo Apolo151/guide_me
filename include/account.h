@@ -4,7 +4,7 @@
 
 using namespace std;
 
-static class Account {
+class Account {
  private:
   string userName;
   string password;
@@ -29,7 +29,7 @@ class User : Account {
   void checkState();
 };
 
-static class Admin : Account {
+class Admin : Account {
  public:
   void addRoad();
   void updateRoad();

@@ -21,7 +21,9 @@ map<transportations, string> enumToStr = {{BUS, "Bus"},
                                           {METRO, "Metro"},
                                           {UBER, "Uber"}};
 
-DataManager::DataManager() {}
+DataManager::DataManager() {
+    linesNo = 0;
+}
 
 void DataManager::readData(string filePath) {
   string trans;

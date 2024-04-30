@@ -5,7 +5,7 @@
 #include "../include/account.h"
 
 // Set Global Variables
-string DATA_PATH = "../../../data/data.txt";
+string DATA_PATH = "../data/data.txt";
 string ADMIN_NAME = "admin";
 string ADMIN_PASSWORD = "adminAdmin";
 
