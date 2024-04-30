@@ -1,9 +1,14 @@
 #pragma once
+#include <string>
+#include <unordered_map>
 
-class GraphState{
-private:
-    static int dfs(string startingNode);
-public:
-    static bool isComplete();
-    static bool isConnected();
+using namespace std;
+
+class GraphState {
+ private:
+  static void dfs(string city, unordered_map<string, int> &vis);
+
+ public:
+  static bool isComplete();
+  static bool isConnected();
 };
