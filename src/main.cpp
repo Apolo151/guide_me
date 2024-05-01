@@ -8,7 +8,6 @@
 string DATA_PATH = "../data/data.txt";
 string ADMIN_NAME = "admin";
 string ADMIN_PASSWORD = "adminAdmin";
-=======
 using namespace std;
 
 // initialize static Map members
