@@ -8,6 +8,8 @@
 string DATA_PATH = "../data/data.txt";
 string ADMIN_NAME = "admin";
 string ADMIN_PASSWORD = "adminAdmin";
+=======
+using namespace std;
 
 // initialize static Map members
 unordered_map<string, unordered_map<string, Route>> Map::adjList;
@@ -42,6 +44,7 @@ int main(int argc, char **argv) {
 		  if (choice == 1) {
 			  choice = -1;
 			  user->traverseMap();
+        Map::bfs("Cairo","Dahab");
 		  }
 
 		  else if (choice == 2) {
@@ -55,9 +58,9 @@ int main(int argc, char **argv) {
 	  }
 	  cout << "See ya later...\n";
   }
-  
-  dataManager.printAdjList();
-
+  //
+  cout<< Map::Dijkstra("Cairo","Dahab");
+  //dataManager.printAdjList();
   // shutdown
   dataManager.saveData(DATA_PATH);
   return 0;
