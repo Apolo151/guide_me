@@ -9,8 +9,13 @@ class Account {
   string userName;
   string password;
 
+  bool validatePassword(string);
+
  public:
+  Account();
   Account(string, string);  // signup
+  bool greetUser();
+  bool signup();
   bool login();
   string getName();
   string getPassword();
