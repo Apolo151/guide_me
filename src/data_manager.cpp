@@ -1,8 +1,13 @@
 #include "../include/data_manager.h"
 
 #include <iostream>
+#include <map>
+#include <unordered_map>
 
 #include "../include/map.h"
+#include "../include/map_helpers.h"
+
+using namespace std;
 
 map<string, transportations> strToEnum = {{"Bus", BUS},
                                           {"Microbus", MICROBUS},
@@ -16,7 +21,9 @@ map<transportations, string> enumToStr = {{BUS, "Bus"},
                                           {METRO, "Metro"},
                                           {UBER, "Uber"}};
 
-DataManager::DataManager() {}
+DataManager::DataManager() {
+    linesNo = 0;
+}
 
 void DataManager::readData(string filePath) {
   string trans;
@@ -36,20 +43,18 @@ void DataManager::readData(string filePath) {
       // get cities & add to cities
       string c1 = wordsList[0];
       string c2 = wordsList[2];
-      cityPairs.insert(set<string>({c1, c2}));
-      Route route(c1, c2);
+      Route route1(c1, c2);
+      Route route2(c2, c1);
       // loop through roads and add to adjList
       for (int i = 3; i < wordsList.size(); i += 2) {
         trans = wordsList[i];
         cost = stoi(wordsList[i + 1]);
-        RoadProps roadProps(cost, strToEnum[trans]);
-        route.addRoad(roadProps);
-        //
-        Map::adjList[c1].push_back(Road(c1, c2, roadProps));
-        Map::adjList[c2].push_back(Road(c2, c1, roadProps));
+        RoadProperties roadProperties(cost, strToEnum[trans]);
+        route1.addRoad(roadProperties);
+        route2.addRoad(roadProperties);
       }
-      // add route
-      Map::routes.push_back(route);
+      Map::adjList[c1][c2] = route1;
+      Map::adjList[c2][c1] = route2;
       // clear data
       wordsList.clear();
       stringStream.clear();
@@ -63,12 +68,18 @@ void DataManager::readData(string filePath) {
 void DataManager::saveData(string filePath) {
   fileStream.open(filePath, ios::out);
   if (fileStream.is_open()) {
-    fileStream << Map::routes.size();
-    for (auto route : Map::routes) {
-      fileStream << '\n' << route.city1 << " - " << route.city2;
-      cityPairs.erase(cityPairs.find(set<string>({route.city1, route.city2})));
-      for (auto road : route.roads) {
-        fileStream << ' ' << enumToStr[road.transport] << ' ' << road.cost;
+    unordered_map<string, unordered_map<string, int>> vis;
+    int numberOfEdges = Map::getNumberOfEdges();
+    fileStream << numberOfEdges;
+    for (auto i : Map::adjList) {
+      for (auto j : i.second) {
+        if (vis[i.first][j.first] == 1) continue;
+        vis[i.first][j.first] = 1;
+        vis[j.first][i.first] = 1;
+        fileStream << '\n' << i.first << " - " << j.first;
+        for (auto road : j.second.roads) {
+          fileStream << ' ' << enumToStr[road.transport] << ' ' << road.cost;
+        }
       }
     }
   } else {
@@ -78,12 +89,20 @@ void DataManager::saveData(string filePath) {
 }
 
 void DataManager::printAdjList() {
-  for (auto pr : Map::adjList) {
-    cout << "City: " << pr.first << endl;
-    for (auto road : pr.second) {
-      cout << road.city1Name << " - " << road.city2Name << " with "
-           << enumToStr[road.props.transport] << ", costs " << road.props.cost
+  unordered_map<string, unordered_map<string, int>> vis;
+  for (auto i : Map::adjList) {
+    for (auto j : i.second) {
+      if (vis[i.first][j.first] == 1) continue;
+      vis[i.first][j.first] = 1;
+      vis[j.first][i.first] = 1;
+      cout << "\n"
+           << "From: " << i.first << " To: " << j.first << " AND "
+           << "From: " << j.first << " To: " << i.first << "\n"
            << endl;
+      for (auto road : j.second.roads) {
+        cout << i.first << " - " << j.first << " with "
+             << enumToStr[road.transport] << ", costs " << road.cost << endl;
+      }
     }
   }
 }
