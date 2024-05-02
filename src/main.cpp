@@ -6,7 +6,7 @@
 
 #include "../include/all_paths.h"
 // Set Global Variables
-string DATA_PATH = "../data/data.txt";
+string DATA_PATH = "D:\\University\\2nd Year\\DS\\Project\\guide_me\\data\\data.txt";
 string ADMIN_NAME = "admin";
 string ADMIN_PASSWORD = "adminAdmin";
 using namespace std;
@@ -21,47 +21,50 @@ int main(int argc, char **argv) {
   dataManager.readData(DATA_PATH);
   Account account;
   // Greet User
-  bool greetingState = account.greetUser();
-  if (!greetingState) return 0;
-  // cast to user or admin according to data
-  bool isAdmin = false;
-  if (account.getName() == ADMIN_NAME && account.getPassword() == ADMIN_PASSWORD)
-	  isAdmin = true;
-  //
-  if (isAdmin) {
-	  Admin* user = (Admin*)&account;
-	  cout << "What do you want to do?\n";
-	  cout << "1.Add City	2.Update City	3.Delete City";
-	  // TODO: add handling logic
-  }
-  else {
-	  User* user = (User*)&account;
-	  int choice=-1;
-	  cout << "What do you want to do?\n";
-	  while (choice != 1 && choice != 2) {
-		  cout << "1.Traverse Map	2.Check Map State	3.Close app\n";
-		  cin >> choice;
-		  if (choice == 1) {
-			  choice = -1;
-			  user->traverseMap();
-        Map::bfs("Cairo","Dahab");
-		  }
+  // bool greetingState = account.greetUser();
+  // if (!greetingState) return 0;
+  // // cast to user or admin according to data
+  // bool isAdmin = false;
+  // if (account.getName() == ADMIN_NAME && account.getPassword() == ADMIN_PASSWORD)
+	//   isAdmin = true;
+  // //
+  // if (isAdmin) {
+	//   Admin* user = (Admin*)&account;
+	//   cout << "What do you want to do?\n";
+	//   cout << "1.Add City	2.Update City	3.Delete City";
+	//   // TODO: add handling logic
+  // }
+  // else {
+	//   User* user = (User*)&account;
+	//   int choice=-1;
+	//   cout << "What do you want to do?\n";
+	//   while (choice != 1 && choice != 2) {
+	// 	  cout << "1.Traverse Map	2.Check Map State	3.Close app\n";
+	// 	  cin >> choice;
+	// 	  if (choice == 1) {
+	// 		  choice = -1;
+	// 		  user->traverseMap();
+  //       Map::bfs("Cairo","Dahab");
+	// 	  }
 
-		  else if (choice == 2) {
-			  choice = -1;
-			  user->checkState();
-		  }
-		  else if (choice == 3)
-			  break;
-		  else
-			  cout << "Invalid Option, Try again...\n";
-	  }
-	  cout << "See ya later...\n";
-  }
-  //
-  cout<< Map::Dijkstra("Cairo","Dahab");
+	// 	  else if (choice == 2) {
+	// 		  choice = -1;
+	// 		  user->checkState();
+	// 	  }
+	// 	  else if (choice == 3)
+	// 		  break;
+	// 	  else
+	// 		  cout << "Invalid Option, Try again...\n";
+	//   }
+	//   cout << "See ya later...\n";
+  // }
+  // //
+  // cout<< Map::Dijkstra("Cairo","Dahab");
   //dataManager.printAdjList();
   // shutdown
   dataManager.saveData(DATA_PATH);
+  AllPaths allPaths(Map::adjList, "Cairo", "Dahab");
+  allPaths.computeAllPaths();
+  allPaths.displayAllPaths();
   return 0;
 }

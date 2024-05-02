@@ -1,5 +1,8 @@
 #pragma once
 #include <vector>
+#include "../include/map.h"
+#include "../include/map_helpers.h"
+#include <bits/stdc++.h>
 using namespace std;
 class AllPaths
 {
@@ -9,17 +12,17 @@ class AllPaths
         {
             public:
                 int cost;
-                vector <int> pathVector;
-                Path(int cost, vector <int> pathVector);
+                vector <string> pathVector;
+                Path(int cost, vector <string> pathVector);
                 bool operator<(const Path& other) const;
         };
 
-        int source, destination;
-        vector <vector <pair <int, int>>> graph;
-        vector <Path> allPathsVector;
-        AllPaths(vector <vector <pair <int, int>>> graph, int, int);
+        string source, destination;
+        unordered_map<string, unordered_map<string, Route>> graph;
+        vector <pair <int, vector <string>>> allPathsVector;
+        AllPaths(unordered_map<string, unordered_map<string, Route>> &graph, string, string);
         void displayAllPaths();
         void computeAllPaths();
-        void dfsAllPaths(int, vector <int>, int);
+        void dfsAllPaths(string, map<string, bool>&, vector <string>, int);
         bool comparePaths(Path&, Path&);
 };
