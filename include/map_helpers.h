@@ -28,7 +28,7 @@ class RoadProperties {
   RoadProperties(int, transportations);
   RoadProperties(const RoadProperties&);
 
-  bool operator==(const RoadProperties &other) {
+  bool operator==(const RoadProperties &other) const {
     return other.cost == cost && other.transport == transport;
   }
 };
