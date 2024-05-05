@@ -1,8 +1,11 @@
 #pragma once
 #include <vector>
+#include <unordered_map>
+#include <string>
+#include <pair>
+#include <map>
 #include "../include/map.h"
 #include "../include/map_helpers.h"
-#include <bits/stdc++.h>
 using namespace std;
 class AllPaths
 {
