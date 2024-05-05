@@ -5,6 +5,8 @@
 #include <map>
 #include <string>
 #include <vector>
+#include <algorithm>
+#include <iostream>
 
 AllPaths::AllPaths(unordered_map<string, unordered_map<string, Route>> &graph, string source, string destination)
 {
