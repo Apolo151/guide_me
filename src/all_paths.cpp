@@ -1,7 +1,10 @@
 #include "../include/all_paths.h"
 #include "../include/map.h"
 #include "../include/map_helpers.h"
-#include <bits/stdc++.h>
+#include <unordered_map>
+#include <map>
+#include <string>
+#include <vector>
 
 AllPaths::AllPaths(unordered_map<string, unordered_map<string, Route>> &graph, string source, string destination)
 {
