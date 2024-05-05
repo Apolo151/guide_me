@@ -5,8 +5,9 @@
 #include "../include/map.h"
 
 
+#include "../include/all_paths.h"
 // Set Global Variables
-string DATA_PATH = "../data/data.txt";
+string DATA_PATH = "D:\\University\\2nd Year\\DS\\Project\\guide_me\\data\\data.txt";
 string ADMIN_NAME = "admin";
 string ADMIN_PASSWORD = "adminAdmin";
 using namespace std;
@@ -78,6 +79,9 @@ int main(int argc, char **argv) {
   user->deleteRoad(Road(name1, name2, RoadProperties(50, BUS)));
 
   dataManager.printAdjList();
+  AllPaths allPaths(Map::adjList, "Cairo", "Dahab");
+  allPaths.computeAllPaths();
+  allPaths.displayAllPaths();
   // user->deleteRoad()
   //  shutdown
   dataManager.saveData(DATA_PATH);
