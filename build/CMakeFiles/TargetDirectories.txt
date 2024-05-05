@@ -1,3 +1,0 @@
-D:/University/2nd Year/DS/Project/guide_me/build/CMakeFiles/main.dir
-D:/University/2nd Year/DS/Project/guide_me/build/CMakeFiles/edit_cache.dir
-D:/University/2nd Year/DS/Project/guide_me/build/CMakeFiles/rebuild_cache.dir
