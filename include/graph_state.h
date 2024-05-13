@@ -5,10 +5,10 @@
 using namespace std;
 
 class GraphState {
- private:
-  static void dfs(string city, unordered_map<string, int> &vis);
+   private:
+    static void dfs(string city, unordered_map<string, int> &vis);
 
- public:
-  static bool isComplete();
-  static bool isConnected();
+   public:
+    static bool isComplete();
+    static bool isConnected();
 };

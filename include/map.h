@@ -1,13 +1,15 @@
 #pragma once
 
+#include <queue>
 #include <string>
 #include <unordered_map>
-#include <queue>
-#include "map_helpers.h"
+
 #include "data_manager.h"
+#include "map_helpers.h"
 using namespace std;
 
 class Map {
+
   Map();
  private:
 	 static int cnt;
@@ -21,3 +23,4 @@ class Map {
   static void printSavedTraverse(queue<string> traverseQueue);
   static int getNumberOfEdges();
 };
+
