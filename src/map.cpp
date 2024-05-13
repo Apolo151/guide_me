@@ -56,14 +56,15 @@ vector<pair<string, string>> Map::saveCheapestPath(map<string, pair<string, tran
         cout << parent.first << "\n";
     }
     reverse(v.begin(), v.end());
-    int n = v.size();
-    for (int i = 0; i < n; i++) {
+  //  int n = v.size();
+  // example to print the cheapest path
+   /* for (int i = 0; i < n; i++) {
         if (i == 0)
             cout << " form " << v[i].first << " take " << ' ' << v[i].second << " to ";
         else
             cout << v[i].first << " then  take " << ' ' << v[i].second << " to ";;
     }
-    cout << distination << "\n";
+    cout << distination << "\n";*/
     return v;
 }
 
