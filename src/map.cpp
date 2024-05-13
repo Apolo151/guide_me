@@ -7,7 +7,7 @@
 #include <stack>
 #include <string>
 #include <vector>
-
+#include<algorithm>
 using namespace std;
 // Map
 map<transportations, string> findTransport = { {BUS, "Bus"},
