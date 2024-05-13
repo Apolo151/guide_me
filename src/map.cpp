@@ -1,4 +1,5 @@
 #include "../include/map.h"
+
 #include <cstring>
 #include <iostream>
 #include <map>
@@ -9,6 +10,11 @@
 
 using namespace std;
 // Map
+map<transportations, string> findTransport = { {BUS, "Bus"},
+                                          {MICROBUS, "Microbus"},
+                                          {TRAIN, "Train"},
+                                          {METRO, "Metro"},
+                                          {UBER, "Uber"} };
 void Map::bfs(string start) {
   map<string, bool> visited;
   queue<string> traversingQueue,savingQueue;
@@ -38,28 +44,38 @@ void Map::printSavedTraverse(queue<string> traverseQueue){
   }
 }
 int Map::compute_hash(string s) {
-  long long ret = 0, pw = 1;
-  int i = 1;
-  const int mod = 1e3, p = 31;
-  for (auto c : s) {
-    if (c >= 'a' && c <= 'z') {
-      ret = ((ret % mod) + ((pw % mod) * (c - 'a' + 1) % mod) % mod) % mod;
-      pw = ((pw * mod) * (p % mod)) % mod;
-    } else {
-      ret = ((ret % mod) + ((pw % mod) * (c - 'A' + 1) % mod) % mod) % mod;
-      pw = ((pw * mod) * (p % mod)) % mod;
-    }
-  }
-  return ret;
+    return hash[s] = (hash[s] == 0 ? ++cnt:hash[s]);
 }
-long long Map::Dijkstra(string node, string distination) {
-  cout << "ya rab\n";
+
+vector<pair<string, string>> Map::saveCheapestPath(map<string, pair<string, transportations>> par , string distination)
+{
+
+    vector<pair<string, string>>v;
+    for (auto parent = par[distination]; parent.first != "-1"; parent = par[parent.first]) {
+        v.push_back({ parent.first,findTransport[parent.second] });
+        cout << parent.first << "\n";
+    }
+    reverse(v.begin(), v.end());
+    int n = v.size();
+    for (int i = 0; i < n; i++) {
+        if (i == 0)
+            cout << " form " << v[i].first << " take " << ' ' << v[i].second << " to ";
+        else
+            cout << v[i].first << " then  take " << ' ' << v[i].second << " to ";;
+    }
+    cout << distination << "\n";
+    return v;
+}
+
+pair<long long, vector<pair<string, string>>> Map::Dijkstra(string node, string distination) {
+  
   priority_queue<pair<long long, string>> pq; // < -cost , city >
   map<string, pair<string, transportations>> par;
-  long long dis[int(1e3)]; // [hash(city)]
-  memset(dis, 0x3fffff, sizeof dis);
+  long long dis[150]; // [hash(city)]
+  memset(dis,-1, sizeof dis);
   pq.push({0, node});
   dis[compute_hash(node)] = 0;
+  par[node] = { "-1" ,transportations() };
   while (!pq.empty()) {
     long long cost;
     string city;
@@ -84,8 +100,10 @@ long long Map::Dijkstra(string node, string distination) {
       }
     }
   }
-  return dis[compute_hash(distination)];
+
+  return { dis[compute_hash(distination)] ,saveCheapestPath(par, distination) };
 }
+
 int Map::getNumberOfEdges() {
   int cnt = 0;
   for (auto i : Map::adjList) {
