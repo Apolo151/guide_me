@@ -1,13 +1,22 @@
+// Copyright (C) 2021 The Qt Company Ltd.
+// SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GPL-3.0-only
+
+#include <QGuiApplication>
+#include <QQmlApplicationEngine>
+
+#include "app_environment.h"
+#include "import_qml_components_plugins.h"
+#include "import_qml_plugins.h"
+
 #include <iostream>
 
-#include "../include/account.h"
-#include "../include/data_manager.h"
-#include "../include/map.h"
+#include "account.h"
+#include "data_manager.h"
+#include "map.h"
+#include "all_paths.h"
 
-
-#include "../include/all_paths.h"
 // Set Global Variables
-string DATA_PATH = "D:\\University\\2nd Year\\DS\\Project\\guide_me\\data\\data.txt";
+string DATA_PATH = "D:\\University\\2nd Year\\DS\\Project\\GuideMe\\content\\data.txt";
 string ADMIN_NAME = "admin";
 string ADMIN_PASSWORD = "adminAdmin";
 using namespace std;
@@ -16,74 +25,37 @@ using namespace std;
 unordered_map<string, unordered_map<string, Route>> Map::adjList;
 // list<Route> Map::routes;
 
-int main(int argc, char **argv) {
-  // setup entities
-  DataManager dataManager = DataManager();
-  dataManager.readData(DATA_PATH);
-  Account account;
-  //   // Greet User
-  //   bool greetingState = account.greetUser();
-  //   if (!greetingState) return 0;
-  //   // cast to user or admin according to data
-  //   bool isAdmin = false;
-  //   if (account.getName() == ADMIN_NAME && account.getPassword() ==
-  //   ADMIN_PASSWORD)
-  // 	  isAdmin = true;
-  //   //
-  //   if (isAdmin) {
-  // 	  Admin* user = (Admin*)&account;
-  // 	  cout << "What do you want to do?\n";
-  // 	  cout << "1.Add City	2.Update City	3.Delete City";
-  // 	  // TODO: add handling logic
-  //   }
-  //   else {
-  // 	  User* user = (User*)&account;
-  // 	  int choice=-1;
-  // 	  cout << "What do you want to do?\n";
-  // 	  while (choice != 1 && choice != 2) {
-  // 		  cout << "1.Traverse Map	2.Check Map State	3.Close
-  // app\n"; 		  cin >> choice; 		  if (choice == 1) { 			  choice = -1; 			  user->traverseMap();
-  //         Map::bfs("Cairo","Dahab");
-  // 		  }
+int main(int argc, char *argv[])
+{
+    // setup entities
+    DataManager dataManager = DataManager();
+    dataManager.readData(DATA_PATH);
+    Account account;
 
-  // 		  else if (choice == 2) {
-  // 			  choice = -1;
-  // 			  user->checkState();
-  // 		  }
-  // 		  else if (choice == 3)
-  // 			  break;
-  // 		  else
-  // 			  cout << "Invalid Option, Try again...\n";
-  // 	  }
-  // 	  cout << "See ya later...\n";
-  //   }
-  //
-  // cout<< Map::Dijkstra("Cairo","Dahab");
-  dataManager.printAdjList();
-  Admin *user = (Admin *)&account;
-  string name1 = "ccccc";
-  user->addCity(name1);
-  string name2 = "bbbbb";
-  user->addCity(name2);
+    set_qt_environment();
 
-  dataManager.printAdjList();
-  cout << "\n\n\n\n\n";
+    QGuiApplication app(argc, argv);
 
-  user->addRoad(name1, name2, 50, BUS);
+    QQmlApplicationEngine engine;
+    const QUrl url(u"qrc:/qt/qml/Main/main.qml"_qs);
+    QObject::connect(
+        &engine,
+        &QQmlApplicationEngine::objectCreated,
+        &app,
+        [url](QObject *obj, const QUrl &objUrl) {
+            if (!obj && url == objUrl)
+                QCoreApplication::exit(-1);
+        },
+        Qt::QueuedConnection);
 
-  dataManager.printAdjList();
-  cout << "\n\n\n\n\n";
+    engine.addImportPath(QCoreApplication::applicationDirPath() + "/qml");
+    engine.addImportPath(":/");
 
-//   user->deleteCity(name1);
-//   user->deleteCity(name2);
-  user->deleteRoad(Road(name1, name2, RoadProperties(50, BUS)));
+    engine.load(url);
 
-  dataManager.printAdjList();
-  AllPaths allPaths(Map::adjList, "Cairo", "Dahab");
-  allPaths.computeAllPaths();
-  allPaths.displayAllPaths();
-  // user->deleteRoad()
-  //  shutdown
-  dataManager.saveData(DATA_PATH);
-  return 0;
+    if (engine.rootObjects().isEmpty()) {
+        return -1;
+    }
+
+    return app.exec();
 }
