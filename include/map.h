@@ -9,6 +9,8 @@
 using namespace std;
 
 class Map {
+    Map();
+
 
   Map();
  public:
@@ -23,4 +25,3 @@ class Map {
   static void printSavedTraverse(queue<string> traverseQueue);
   static int getNumberOfEdges();
 };
-

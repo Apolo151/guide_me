@@ -7,14 +7,9 @@
 #include <stack>
 #include <string>
 #include <vector>
-#include<algorithm>
+
 using namespace std;
 // Map
-map<transportations, string> findTransport = { {BUS, "Bus"},
-                                          {MICROBUS, "Microbus"},
-                                          {TRAIN, "Train"},
-                                          {METRO, "Metro"},
-                                          {UBER, "Uber"} };
 void Map::bfs(string start) {
     map<string, bool> visited;
     queue<string> traversingQueue, savingQueue;
@@ -25,7 +20,7 @@ void Map::bfs(string start) {
     while (!traversingQueue.empty()) {
         string currentCityName;
         currentCityName = traversingQueue.front();
-        savingQueue.push(currentCityName); // here we save the current city to print it later
+        savingQueue.push(currentCityName);  // here we save the current city to print it later
         traversingQueue.pop();
         for (auto to : adjList[currentCityName]) {
             if (!visited[to.first]) {
@@ -35,7 +30,7 @@ void Map::bfs(string start) {
         }
     }
 
-    printSavedTraverse(savingQueue);// call the function that prints the saved traversed queue
+    printSavedTraverse(savingQueue);  // call the function that prints the saved traversed queue
 }
 void Map::printSavedTraverse(queue<string> traverseQueue) {
     while (!traverseQueue.empty()) {
@@ -44,39 +39,28 @@ void Map::printSavedTraverse(queue<string> traverseQueue) {
     }
 }
 int Map::compute_hash(string s) {
-    return hash[s] = (hash[s] == 0 ? ++cnt : hash[s]);
-}
-
-vector<pair<string, string>> Map::saveCheapestPath(map<string, pair<string, transportations>> par, string distination)
-{
-
-    vector<pair<string, string>>v;
-    for (auto parent = par[distination]; parent.first != "-1"; parent = par[parent.first]) {
-        v.push_back({ parent.first,findTransport[parent.second] });
-        //cout << parent.first << "\n";
+    long long ret = 0, pw = 1;
+    int i = 1;
+    const int mod = 1e3, p = 31;
+    for (auto c : s) {
+        if (c >= 'a' && c <= 'z') {
+            ret = ((ret % mod) + ((pw % mod) * (c - 'a' + 1) % mod) % mod) % mod;
+            pw = ((pw * mod) * (p % mod)) % mod;
+        } else {
+            ret = ((ret % mod) + ((pw % mod) * (c - 'A' + 1) % mod) % mod) % mod;
+            pw = ((pw * mod) * (p % mod)) % mod;
+        }
     }
-    reverse(v.begin(), v.end());
-    //  int n = v.size();
-    // example to print the cheapest path
-     /* for (int i = 0; i < n; i++) {
-          if (i == 0)
-              cout << " form " << v[i].first << " take " << ' ' << v[i].second << " to ";
-          else
-              cout << v[i].first << " then  take " << ' ' << v[i].second << " to ";;
-      }
-      cout << distination << "\n";*/
-    return v;
+    return ret;
 }
-
-pair<long long, vector<pair<string, string>>> Map::Dijkstra(string node, string distination) {
-
-    priority_queue<pair<long long, string>> pq; // < -cost , city >
+long long Map::Dijkstra(string node, string distination) {
+    cout << "ya rab\n";
+    priority_queue<pair<long long, string>> pq;  // < -cost , city >
     map<string, pair<string, transportations>> par;
-    long long dis[150]; // [hash(city)]
-    memset(dis, -1, sizeof dis);
-    pq.push({ 0, node });
+    long long dis[int(1e3)];  // [hash(city)]
+    memset(dis, 0x3fffff, sizeof dis);
+    pq.push({0, node});
     dis[compute_hash(node)] = 0;
-    par[node] = { "-1" ,transportations() };
     while (!pq.empty()) {
         long long cost;
         string city;
@@ -84,7 +68,6 @@ pair<long long, vector<pair<string, string>>> Map::Dijkstra(string node, string 
         cost *= -1;
         pq.pop();
         for (auto to : adjList[city]) {
-
             int hash = compute_hash(to.first);
             long long mn = (dis[hash] == -1 ? 100000 : dis[hash]);
             transportations t;
@@ -96,15 +79,13 @@ pair<long long, vector<pair<string, string>>> Map::Dijkstra(string node, string 
             }
             if (dis[hash] == -1 || mn < dis[hash]) {
                 dis[hash] = mn;
-                pq.push({ -mn, to.first });
-                par[to.first] = { city, t };
+                pq.push({-mn, to.first});
+                par[to.first] = {city, t};
             }
         }
     }
-
-    return { dis[compute_hash(distination)] ,saveCheapestPath(par, distination) };
+    return dis[compute_hash(distination)];
 }
-
 int Map::getNumberOfEdges() {
     int cnt = 0;
     for (auto i : Map::adjList) {
