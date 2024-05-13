@@ -4,12 +4,15 @@
 #include "../include/all_paths.h"
 #include "../include/data_manager.h"
 #include "../include/map.h"
+#include<map>
+
 // Set Global Variables
 string DATA_PATH = "../../../data/data.txt";
 string ADMIN_NAME = "admin";
 string ADMIN_PASSWORD = "adminAdmin";
 using namespace std;
-
+int Map::cnt = 0;
+map<string, int>Map::hash;
 // initialize static Map members
 unordered_map<string, unordered_map<string, Route>> Map::adjList;
 // list<Route> Map::routes;
