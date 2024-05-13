@@ -9,9 +9,6 @@
 using namespace std;
 
 class Map {
-    Map();
-
-
   Map();
  public:
  
