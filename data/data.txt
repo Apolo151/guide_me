@@ -1,8 +1,6 @@
-7
-Luxor - Cairo Bus 9999
-Asyut - Cairo Train 250 Bus 450
-BeniSuef - Cairo Microbus 20 Bus 15
+5
+Cairo - Giza Metro 30 Bus 60 Uber 230
+Cairo - BeniSuef Microbus 20 Bus 15
+Cairo - Asyut Train 250 Bus 450
+Giza - Dahab Bus 500 Microbus 345
 BeniSuef - Dahab Microbus 200 Bus 315
-Dahab - Giza Bus 500 Microbus 345
-Giza - Cairo Metro 30 Bus 60 Uber 230
-Cairo - Fayoum Microbus 307

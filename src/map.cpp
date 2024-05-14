@@ -38,8 +38,9 @@ void Map::bfs(string start) {
     printSavedTraverse(savingQueue);// call the function that prints the saved traversed queue
 }
 void Map::printSavedTraverse(queue<string> traverseQueue) {
+    cout << "Visited cities (in order):\n";
     while (!traverseQueue.empty()) {
-        cout << traverseQueue.front() << " ";
+        cout << traverseQueue.front() << "\n";
         traverseQueue.pop();
     }
 }
