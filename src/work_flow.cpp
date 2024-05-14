@@ -23,7 +23,7 @@ void WorkFlow::mainFlow() {
     } else {
       account = new Admin();
     }
-    if(!account->mainMenu(account)) return;
+    if(!account->mainMenu(account)) return;// true for logout, false for exit
   }
 }
 

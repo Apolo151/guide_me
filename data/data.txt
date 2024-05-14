@@ -1,8 +1,8 @@
 7
-Fayoum - Cairo Microbus 307
-Giza - Cairo Metro 30 Bus 60 Uber 230
-Giza - Dahab Bus 500 Microbus 345
-Dahab - BeniSuef Microbus 200 Bus 315
-BeniSuef - Cairo Microbus 20 Bus 15
+Luxor - Cairo Bus 9999
 Asyut - Cairo Train 250 Bus 450
-Cairo - Luxor Bus 9999
+BeniSuef - Cairo Microbus 20 Bus 15
+BeniSuef - Dahab Microbus 200 Bus 315
+Dahab - Giza Bus 500 Microbus 345
+Giza - Cairo Metro 30 Bus 60 Uber 230
+Cairo - Fayoum Microbus 307
