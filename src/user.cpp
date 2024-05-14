@@ -10,28 +10,23 @@ using namespace std;
 
 void User::traverseMap() {
     int option = -1;
+    string city;
+    unordered_map<string, int> vis;
     cout << "How do you want to traverse?\n";
     cout << "1.BFS \t 2.DFS \n \n";
     cout << "Your choice: ";
     cin >> option;
     if (option == 1) {
-        string city;
-        cout << "Enter the Source: ";
+        cout << "Enter the source city: ";
         cin >> city;
         system("cls");
         Map::bfs(city);
     } else if (option == 2) {
-        string source, destination;
-        cout << "Enter the Source: ";
-        cin >> source;
-        cout << "Enter the Destination: ";
-        cin >> destination;
-        AllPaths dfs(Map::adjList, source, destination);
-        int budget;
-        cout << "Enter Your Budget: ";
-        cin >> budget;
-        dfs.computeAllPaths(budget);
-        dfs.displayAllPaths();
+        cout << "Enter the source city: ";
+        cin >> city;
+        system("cls");
+        cout << "Visited cities (in order):\n";
+        Map::dfs(city, vis);
     }
 }
 
@@ -57,13 +52,28 @@ void User::checkState() {
     }
 }
 
+void User::getOptions() {
+    string source, destination;
+    cout << "Enter the source city: ";
+    cin >> source;
+    cout << "Enter the destination city: ";
+    cin >> destination;
+    AllPaths dfs(Map::adjList, source, destination);
+    int budget;
+    cout << "Enter Your Budget: ";
+    cin >> budget;
+    cout << "\n\t Paths \n";
+    dfs.computeAllPaths(budget);
+    dfs.displayAllPaths();
+}
+
 bool User::mainMenu(Account *account) {
     User *user = (User *)account;
     while (true) {
         int choice;
         cout << "\n\n \t User MainMenu\n\n";
-        cout << " [1] Traverse Graph \n [2] Check Graph State \n [3] Logout "
-                "\n [4] Exit \n\n";
+        cout << " [1] Traverse Graph \n [2] Check Graph State \n [3] Get Route Options"
+                "\n [4] Logout \n [5] Exit \n\n";
         cout << "Go To: ";
         cin >> choice;
         if (choice == 1) {
@@ -73,10 +83,13 @@ bool User::mainMenu(Account *account) {
             checkState();
         }
         if (choice == 3) {
+            getOptions();
+        }
+        if (choice == 4) {
             system("cls");
             return true;
         }
-        if (choice == 4) {
+        if (choice == 5) {
             system("cls");
             return false;
         }

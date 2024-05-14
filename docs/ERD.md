@@ -97,8 +97,8 @@ Road deleted successfully.
 
  [1] Traverse Graph
  [2] Check Graph State
- [3] Logout
- [4] Exit
+ [4] Logout
+ [5] Exit
 ```
 #### Scenario 1: Traverse Map
 
@@ -135,8 +135,8 @@ Enter the source city: Giza
 Visited cities (in order):
 Giza
 Cairo
-Dahab
 BeniSuef
+Dahab
 Asyut
 ```
 
@@ -172,19 +172,45 @@ The graph is not complete.
 The graph is connected.
 ```
 
-#### Scenario 3: Get Best Routes
+#### Scenario 3: Get Route Options
 
 **Input:**
 ```bash
-What do you want to do?
-3.Get best routes
-Enter your start city: Cairo
-Enter your End city: Aswan
+Enter the source city: Cairo
+Enter the destination city: Dahab
+Enter Your Budget: 400
 ```
 
 **Output:**
 ```bash
-Best routes:
-1. Cairo -> Luxor -> Aswan (Cost: 800 EGP, Mode: Train)
-2. Cairo -> Bani Seuf -> Aswan (Cost: 600 EGP, Mode: Bus)
+         Paths
+Path # 1
+The cost is: 215
+The route:
+Cairo BeniSuef Bus 15
+BeniSuef Dahab Microbus 200
+
+Path # 2
+The cost is: 220
+The route:
+Cairo BeniSuef Microbus 20
+BeniSuef Dahab Microbus 200
+
+Path # 3
+The cost is: 330
+The route:
+Cairo BeniSuef Bus 15
+BeniSuef Dahab Bus 315
+
+Path # 4
+The cost is: 335
+The route:
+Cairo BeniSuef Microbus 20
+BeniSuef Dahab Bus 315
+
+Path # 5
+The cost is: 375
+The route:
+Cairo Giza Metro 30
+Giza Dahab Microbus 345
 ```

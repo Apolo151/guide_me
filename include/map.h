@@ -22,6 +22,7 @@ class Map {
   static pair<long long, vector<pair<string, string>>> Dijkstra(
       string start, string destination);
   static void bfs(string start);
+  static void dfs(string city, unordered_map<string, int> &vis);
   static void printSavedTraverse(queue<string> traverseQueue);
   static int getNumberOfEdges();
 };

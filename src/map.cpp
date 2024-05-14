@@ -15,6 +15,17 @@ map<transportations, string> findTransport = { {BUS, "Bus"},
                                           {TRAIN, "Train"},
                                           {METRO, "Metro"},
                                           {UBER, "Uber"} };
+
+void Map::dfs(string city, unordered_map<string, int> &vis) {
+  if (vis[city] == 1) return;
+  vis[city] = 1;
+  cout << city << "\n";
+  for (auto i : Map::adjList[city]) {
+    dfs(i.first, vis);
+  }
+}
+
+
 void Map::bfs(string start) {
     map<string, bool> visited;
     queue<string> traversingQueue, savingQueue;

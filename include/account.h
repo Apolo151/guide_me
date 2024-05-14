@@ -15,6 +15,7 @@ class User : public Account {
    public:
     void traverseMap();
     void checkState();
+    void getOptions();
     bool mainMenu(Account *);
 };
 
