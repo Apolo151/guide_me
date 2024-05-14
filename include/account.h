@@ -7,38 +7,32 @@
 using namespace std;
 
 class Account {
-   private:
-    string userName;
-    string password;
-
-    bool validatePassword(string);
-
-   public:
-    Account();
-    Account(string, string);  // signup
-    bool greetUser();
-    bool signup();
-    bool login();
-    string getName();
-    string getPassword();
-    void setName(string);
-    void setPassword(string);
+ public:
+  virtual bool mainMenu(Account *) = 0;
 };
 
-class User : Account {
-   public:
-    void traverseMap();
-    void checkState();
+class User : public Account {
+ public:
+  void traverseMap();
+  void checkState();
+  bool mainMenu(Account *);
 };
 
-class Admin : Account {
-   public:
-    void addRoad(string &city1, string &city2, int cost, transportations transportation);
-    void updateRoad(string &city1, string &city2, int cost, transportations transportation,
-                    int new_cost, transportations new_transportation);
-    void deleteRoad(Road road);
-    //
-    void addCity(string &name);
-    void updateCity(string &name, string &new_name);
-    void deleteCity(string &name);
+class Admin : public Account {
+ public:
+  string getCityName();
+  void selectRoad(string &, string &, int &, transportations &);
+
+  bool mainMenu(Account *);
+
+  void addRoad(string &city1, string &city2, int cost,
+               transportations transportation);
+  void updateRoad(string &city1, string &city2, int cost,
+                  transportations transportation, int new_cost,
+                  transportations new_transportation);
+  void deleteRoad(Road road);
+  //
+  void addCity(string &name);
+  void updateCity(string &name, string &new_name);
+  void deleteCity(string &name);
 };
