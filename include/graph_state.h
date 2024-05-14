@@ -6,9 +6,9 @@ using namespace std;
 
 class GraphState {
    private:
-    static void dfs(string city, unordered_map<string, int> &vis);
 
    public:
+    static void dfs(string city, unordered_map<string, int> &vis);
     static bool isComplete();
     static bool isConnected();
 };
