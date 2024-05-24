@@ -1,0 +1,7 @@
+6
+Cairo - Faiyum Bus 260 Uber 1230
+Hurghada - Faiyum Bus 500 
+Cairo - Alexandria Microbus 200 Bus 415
+Aswan - Cairo Train 550 Bus 400 
+Hurghada - Alexandria Plane 3210 Bus 420
+Luxor - Aswan Train 170 Boat 500 Uber 1000
