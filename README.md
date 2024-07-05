@@ -1,4 +1,4 @@
-# guide_me
+# Guide Me
 
 A CLI application that provides users with all the available transportation options in their map, according to their needs.
 
